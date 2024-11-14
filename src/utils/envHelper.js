@@ -1,14 +1,13 @@
-import dotenv from 'dotenv';
-import path from 'path';
+import dotenv from "dotenv";
+import path from "path";
 
 const loadEnvVariables = () => {
-
-    if (process.env.NODE_ENV=="development")
-    {
-        console.log("development mode!!!!")
-        dotenv.config({ path: path.resolve(process.cwd(), `.env.${process.env.NODE_ENV}`) });
-    }
-
-}
+  dotenv.config({
+    path: path.resolve(process.cwd(), `.env`),
+  });
+  //   if (process.env.NODE_ENV == "development") {
+  //     console.log("development mode!!!!");
+  //   }
+};
 
 export default loadEnvVariables;
