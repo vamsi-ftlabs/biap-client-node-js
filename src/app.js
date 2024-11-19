@@ -61,18 +61,18 @@ const corsOptionsDelegate = function (req, callback) {
 };
 
 // Apply CORS middleware to all routes
-app.use(cors(corsOptionsDelegate));
+app.use(cors({ origin: true, credentials: true }));
 
 // Explicitly block disallowed origins
-app.use((req, res, next) => {
-  const origin = req.header("Origin");
-  if (origin && !whitelist.includes(origin)) {
-    return res
-      .status(403)
-      .json({ error: "CORS policy does not allow access from this origin." });
-  }
-  next();
-});
+// app.use((req, res, next) => {
+//   const origin = req.header("Origin");
+//   if (origin && !whitelist.includes(origin)) {
+//     return res
+//       .status(403)
+//       .json({ error: "CORS policy does not allow access from this origin." });
+//   }
+//   next();
+// });
 
 // Apply CORS with the dynamic options to routes starting with /clientApis
 app.use("/clientApis", appVersionValidator(), router);
